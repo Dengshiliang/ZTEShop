@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
         mTabs.add(tab_cart);
         mTabs.add(tab_mine);
 
-
-
         mInflater = LayoutInflater.from(this);
         mTabhost = (FragmentTabHost) this.findViewById(android.R.id.tabhost);
         mTabhost.setup(this,getSupportFragmentManager(),R.id.realtabcontent);
@@ -70,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
         mTabhost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
         mTabhost.setCurrentTab(0);
-
 
     }
 

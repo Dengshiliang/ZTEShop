@@ -20,7 +20,6 @@ package com.kingsley.zteshop.widget;
  * limitations under the License.
  */
 
-
 import java.util.ArrayList;
 
 import android.content.Context;

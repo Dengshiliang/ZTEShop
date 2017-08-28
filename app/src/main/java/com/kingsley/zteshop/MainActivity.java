@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initTab() {
 
-
         Tab tab_home = new Tab(HomeFragment.class,R.string.home,R.drawable.selector_icon_home);
         Tab tab_hot = new Tab(HotFragment.class,R.string.hot,R.drawable.selector_icon_hot);
         Tab tab_category = new Tab(CategoryFragment.class,R.string.catagory,R.drawable.selector_icon_category);
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private View buildIndicator(Tab tab){
-
 
         View view =mInflater.inflate(R.layout.tab_indicator,null);
         ImageView img = (ImageView) view.findViewById(R.id.icon_tab);

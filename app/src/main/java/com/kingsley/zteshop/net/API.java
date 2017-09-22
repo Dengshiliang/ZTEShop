@@ -1,7 +1,10 @@
 package com.kingsley.zteshop.net;
 
 import com.kingsley.zteshop.bean.Banner;
+import com.kingsley.zteshop.bean.Category;
 import com.kingsley.zteshop.bean.HomeCampaign;
+import com.kingsley.zteshop.bean.Page;
+import com.kingsley.zteshop.bean.Ware;
 
 import java.util.List;
 
@@ -27,5 +30,18 @@ public interface API {
     @FormUrlEncoded //获取首页
     @POST(path + "campaign/recommend")
     Observable<List<HomeCampaign>> getHome(@Field("") String empty);
+
+    @FormUrlEncoded //获取热卖
+    @POST(path + "wares/hot")
+    Observable<Page<Ware>> getHotWares(@Field("curPage") int curPage, @Field("pageSize") int pageSize);
+
+    @FormUrlEncoded //获取分类标签
+    @POST(path + "category/list")
+    Observable<List<Category>> getCategory(@Field("") String empty);
+
+    @FormUrlEncoded //获取分类下的列表
+    @POST(path + "wares/list")
+    Observable<Page<Ware>> getWaresList(@Field("categoryId") long categoryId,
+                                         @Field("curPage") int curPage, @Field("pageSize") int pageSize);
 
 }

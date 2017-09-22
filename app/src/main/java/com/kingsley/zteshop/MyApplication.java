@@ -2,6 +2,8 @@ package com.kingsley.zteshop;
 
 import android.app.Application;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 /**
  * 单例模式
  * 软件运行时创建
@@ -22,6 +24,7 @@ public class MyApplication extends Application {
         super.onCreate();
 
         mInstance = this;
+        Fresco.initialize(this);
 
     }
 

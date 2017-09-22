@@ -2,11 +2,7 @@ package com.kingsley.zteshop.bean;
 
 import java.io.Serializable;
 
-/**
- * Created by Ivan on 15/9/24.
- */
 public class BaseBean implements Serializable {
-
 
     protected   long id;
 

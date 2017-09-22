@@ -1,6 +1,5 @@
 package com.kingsley.zteshop.widget;
 
-
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.TintTypedArray;

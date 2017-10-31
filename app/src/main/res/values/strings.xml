@@ -8,4 +8,9 @@
     <string name="mine">我的</string>
     <string name="has_add_cart">已添加到购物车</string>
 
+    <string name="select_all">全选</string>
+    <string name="total">总计</string>
+    <string name="accounts">去结算</string>
+    <string name="delete">删除</string>
+
 </resources>

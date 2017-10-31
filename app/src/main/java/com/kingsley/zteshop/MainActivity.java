@@ -1,5 +1,6 @@
 package com.kingsley.zteshop;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTabHost mTabhost;
 
     private List<Tab> mTabs = new ArrayList<>(5);
+
+    private CartFragment cartFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +68,46 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        /**
+         *  每次点击购物车,进入购物车Fragment
+         *  刷新数据...
+         */
+        mTabhost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+
+                if (tabId == getString(R.string.cart)){
+
+                    refreshCartData();
+
+                }
+
+            }
+        });
+
         mTabhost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
         mTabhost.setCurrentTab(0);
 
     }
 
+    /**
+     * 刷新购物车数据
+     */
+    private void refreshCartData() {
+
+        if (cartFragment == null){
+            //当fragment只有在点击之后，才会添加进来
+            Fragment fragment = getSupportFragmentManager().findFragmentByTag(getString(R.string.cart));
+
+            //判断当前fragment是否被点击，点击才存在
+            if (fragment != null){
+                cartFragment = (CartFragment) fragment;
+                cartFragment.refreshData();
+            }
+        }else {
+            cartFragment.refreshData();
+        }
+    }
 
     private View buildIndicator(Tab tab){
 

@@ -63,8 +63,24 @@
     </style>
 
     <!--大红色按钮样式-->
+    <style name="bigRedButton" parent="@style/bigButton">
+        <item name="android:background">@drawable/bg_btn_style_red</item>
+    </style>
+
+    <!--大红色按钮样式-->
     <style name="bigRedButton2" parent="@style/bigButton2">
         <item name="android:background">@drawable/bg_btn_style_red</item>
+    </style>
+
+    <!-- 大按钮样式-->
+    <style name="bigButton">
+        <item name="android:textSize">@dimen/smallButtonTextSize</item>
+        <item name="android:textColor">@color/white_color_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/largePadding</item>
+        <item name="android:paddingRight">@dimen/largePadding</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <!-- 大按钮样式-->
@@ -77,6 +93,11 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:minHeight">0dp</item>
+    </style>
+
+    <!--checkbox样式-->
+    <style name="customCheckbox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/selector_checkbox</item>
     </style>
 
 

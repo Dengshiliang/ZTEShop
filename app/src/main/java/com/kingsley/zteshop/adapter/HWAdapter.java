@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.kingsley.zteshop.R;
 import com.kingsley.zteshop.bean.Ware;
+import com.kingsley.zteshop.utils.CartProvider;
 import com.kingsley.zteshop.utils.ToastUtils;
 
 import java.util.List;
@@ -19,12 +20,17 @@ import java.util.List;
  */
 public class HWAdapter extends SimpleAdapter<Ware> {
 
+    private CartProvider cartProvider;
+
     public HWAdapter(Context context, List<Ware> datas) {
         super(context, datas, R.layout.hot_ware);
+
+        cartProvider = CartProvider.getInstance(context);
+
     }
 
     @Override
-    public void bindData(BaseViewHolder holder, Ware ware) {
+    public void bindData(BaseViewHolder holder, final Ware ware) {
 
         TextView tv_Title = holder.getTextView(R.id.tv_title);
         TextView tv_Price = holder.getTextView(R.id.tv_price);
@@ -42,6 +48,8 @@ public class HWAdapter extends SimpleAdapter<Ware> {
                 public void onClick(View v) {
                     //添加数据到购物车 TODO
 
+                    cartProvider.put(ware);
+
                     ToastUtils.show(mContext, mContext.getString(R.string.has_add_cart));
                 }
             });
@@ -55,8 +63,8 @@ public class HWAdapter extends SimpleAdapter<Ware> {
      * @param layoutId
      */
     public void reSetLayout(int layoutId) {
-        this.mLayoutResId = layoutId;
 
+        this.mLayoutResId = layoutId;
         notifyItemRangeChanged(0, getDatas().size());
     }
 

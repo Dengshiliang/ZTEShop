@@ -43,5 +43,4 @@ public interface API {
     @POST(path + "wares/list")
     Observable<Page<Ware>> getWaresList(@Field("categoryId") long categoryId,
                                          @Field("curPage") int curPage, @Field("pageSize") int pageSize);
-
 }

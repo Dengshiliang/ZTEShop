@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kingsley.zteshop.activity.WareDetailActivity;
 import com.kingsley.zteshop.bean.Ware;
+import com.kingsley.zteshop.widget.Constants;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -159,6 +161,12 @@ public abstract class BaseAdapter<T, H extends BaseViewHolder> extends RecyclerV
     //显示商品详情
     public void showDetail(Ware wares) {
 
+        Intent intent = new Intent(mContext, WareDetailActivity.class);
+
+        intent.putExtra(Constants.WARES,wares);
+
+        mContext.startActivity(intent);
 
     }
+
 }

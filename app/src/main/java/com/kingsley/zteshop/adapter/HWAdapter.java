@@ -46,7 +46,6 @@ public class HWAdapter extends SimpleAdapter<Ware> {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //添加数据到购物车 TODO
 
                     cartProvider.put(ware);
 

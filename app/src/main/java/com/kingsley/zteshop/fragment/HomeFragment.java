@@ -1,5 +1,6 @@
 package com.kingsley.zteshop.fragment;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -7,12 +8,14 @@ import android.view.View;
 
 import com.daimajia.slider.library.SliderLayout;
 import com.kingsley.zteshop.R;
+import com.kingsley.zteshop.activity.WareListActivity;
 import com.kingsley.zteshop.adapter.HomeCampaignAdapter;
 import com.kingsley.zteshop.bean.Banner;
 import com.kingsley.zteshop.bean.Campaign;
 import com.kingsley.zteshop.bean.HomeCampaign;
 import com.kingsley.zteshop.net.ServiceGenerator;
 import com.kingsley.zteshop.net.SubscriberCallBack;
+import com.kingsley.zteshop.widget.Constants;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.util.List;
@@ -83,6 +86,13 @@ public class HomeFragment extends BaseFragment {
         mAdapter.setHomeCatgoryClickListener(new HomeCampaignAdapter.OnHomeCampaignClickListener() {
             @Override
             public void onClick(View view, Campaign campaign) {
+
+                /**
+                 * 实现商品详情
+                 */
+                Intent intent = new Intent(getActivity(), WareListActivity.class);
+                intent.putExtra(Constants.CAMPAIGN_ID,campaign.getId());
+                startActivity(intent);
 
             }
         });

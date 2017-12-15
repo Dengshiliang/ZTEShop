@@ -1,28 +1,25 @@
 package com.kingsley.zteshop.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.kingsley.zteshop.activity.NewOrderActivity;
 import com.kingsley.zteshop.R;
 import com.kingsley.zteshop.adapter.CartAdapter;
 import com.kingsley.zteshop.adapter.decoration.DividerItemDecortion;
 import com.kingsley.zteshop.bean.ShoppingCart;
 import com.kingsley.zteshop.utils.CartProvider;
 import com.kingsley.zteshop.utils.ToastUtils;
-import com.kingsley.zteshop.widget.CircleAddAndSubView;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 
 import java.util.List;
+
 
 /**
  * 购物车
@@ -30,7 +27,7 @@ import java.util.List;
  * 购物车为空则不能购买
  */
 
-public class CartFragment extends BaseFragment implements View.OnClickListener{
+public class CartFragment extends BaseFragment implements View.OnClickListener {
 
     @ViewInject(R.id.recyclerview_cart)
     private RecyclerView mRecyclerView;
@@ -50,8 +47,16 @@ public class CartFragment extends BaseFragment implements View.OnClickListener{
     private CartProvider mCartProvider;
     private CartAdapter mAdapter;
 
+    private static final int ACTION_EDIT = 1;
+    private static final int ACTION_CAMPLATE = 2;
+
     @Override
     public void setToolbar() {
+
+        getToolbar().hideSearchView();
+        getToolbar().setRightButtonText(R.string.edit);
+        getToolbar().getRightButton().setOnClickListener(this);
+        getToolbar().getRightButton().setTag(ACTION_EDIT);
 
     }
 
@@ -74,7 +79,7 @@ public class CartFragment extends BaseFragment implements View.OnClickListener{
     private void showData() {
 
         List<ShoppingCart> carts = mCartProvider.getAll();
-        mAdapter = new CartAdapter(getContext() , carts , mCheckBox , mTvCount);
+        mAdapter = new CartAdapter(getContext(), carts, mCheckBox, mTvCount);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.addItemDecoration(new DividerItemDecortion(getContext(), DividerItemDecortion.VERTICAL_LIST));
@@ -84,7 +89,7 @@ public class CartFragment extends BaseFragment implements View.OnClickListener{
     /**
      * 刷新数据
      */
-    public void refreshData(){
+    public void refreshData() {
         mAdapter.clearData();
         List<ShoppingCart> carts = mCartProvider.getAll();
         mAdapter.addData(carts);
@@ -96,6 +101,79 @@ public class CartFragment extends BaseFragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
+        //编辑
+        int action = (int) view.getTag();
+        if (ACTION_EDIT == action) {
+            showDelControl();
 
+        } else if (ACTION_CAMPLATE == action) {//完成
+            hideDelControl();
+        }
+
+        if (view.getId() == R.id.btn_order) {
+            List<ShoppingCart> carts = mAdapter.getCheckData();
+            if (carts.size() != 0 && carts != null) {
+                startActivity(new Intent(getActivity(), NewOrderActivity.class));
+            } else {
+                ToastUtils.show(getContext(), "请选择要购买的商品");
+            }
+        }
     }
+
+    /**
+     * 隐藏删除按钮
+     */
+    private void hideDelControl() {
+        getToolbar().getRightButton().setText("编辑");
+        mTvCount.setVisibility(View.VISIBLE);
+        mBtnOrder.setVisibility(View.VISIBLE);
+
+        mBtnDelete.setVisibility(View.GONE);
+        //设置为编辑
+        getToolbar().getRightButton().setTag(ACTION_EDIT);
+        mAdapter.checkAll_None(true);
+        mCheckBox.setChecked(true);
+        mAdapter.showTotalPrice();
+    }
+
+    /**
+     * 显示删除按钮
+     */
+    private void showDelControl() {
+        getToolbar().getRightButton().setText("完成");
+        mTvCount.setVisibility(View.GONE);
+        mBtnOrder.setVisibility(View.GONE);
+        mBtnDelete.setVisibility(View.VISIBLE);
+        //设置为完成
+        getToolbar().getRightButton().setTag(ACTION_CAMPLATE);
+
+        mAdapter.checkAll_None(false);
+        mCheckBox.setChecked(false);
+    }
+
+    @OnClick(R.id.btn_del)
+    public void delCart(View v) {
+        mAdapter.delCart();
+    }
+
+    /**
+     * 结算按钮点击事件
+     *
+     * @param v
+     */
+    @OnClick(R.id.btn_order)
+    public void toOrder(View v) {
+
+        if (mAdapter.getCheckData() != null && mAdapter.getCheckData().size() > 0) {
+
+            /**
+             *  跳转到订单页面
+             *  TODO
+             */
+
+        } else {
+            ToastUtils.show(getContext(), "请选择要购买的商品");
+        }
+    }
+
 }

@@ -1,9 +1,10 @@
-package com.kingsley.zteshop;
+package com.kingsley.zteshop.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.kingsley.zteshop.R;
 import com.kingsley.zteshop.widget.CnToolbar;
 import com.lidroid.xutils.ViewUtils;
 

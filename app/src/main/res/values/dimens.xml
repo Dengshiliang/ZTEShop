@@ -1,4 +1,5 @@
 <resources>
+
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
@@ -11,4 +12,9 @@
     <dimen name="category_layout_width">100dp</dimen>
     <dimen name="ware_grid_img_width">100dp</dimen>
     <dimen name="ware_grid_img_height">100dp</dimen>
+    <dimen name="normalButtonHeight">48.0dip</dimen>
+    <dimen name="smallPadding">8.0dip</dimen>
+    <dimen name="smallButtonHeight">32.0dip</dimen>
+    <dimen name="smallButtonWidth">48.0dip</dimen>
+
 </resources>

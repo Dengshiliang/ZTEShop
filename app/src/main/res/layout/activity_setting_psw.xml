@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_setting_psw"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    android:orientation="vertical"
+    tools:context="com.kingsley.zteshop.activity.SettingPswActivity">
+
+    <include layout="@layout/activity_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/selector_view_block"
+        android:orientation="vertical"
+        android:padding="@dimen/largePadding">
+
+        <com.kingsley.zteshop.widget.ClearEditText
+            android:id="@+id/change_pwd"
+            style="@style/editText_base"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="20dp"
+            android:hint="输入原始密码"
+            android:inputType="textPassword"
+            android:text="" />
+
+        <View style="@style/line_horizontal" />
+
+        <com.kingsley.zteshop.widget.ClearEditText
+            android:id="@+id/change_repwd"
+            style="@style/editText_base"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawablePadding="20dp"
+            android:hint="新登录密码"
+            android:inputType="textPassword"
+            android:text="" />
+    </LinearLayout>
+
+</LinearLayout>

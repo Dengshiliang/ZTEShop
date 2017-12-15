@@ -100,5 +100,73 @@
         <item name="android:button">@drawable/selector_checkbox</item>
     </style>
 
+    <!--TabLayout样式-->
+    <style name="customTabLayout" parent="Widget.Design.TabLayout">
+        <!--<item name="tabMaxWidth">@dimen/tab_max_width</item>-->
+        <item name="tabIndicatorColor">#eb4f38</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+        <item name="tabBackground">@color/white</item>
+        <item name="tabTextAppearance">@style/customTabTextAppearance</item>
+        <item name="tabSelectedTextColor">#eb4f38</item>
+    </style>
+
+    <!-- tab样式-->
+    <style name="customTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/darkgrey</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <style name="editText_base">
+        <item name="android:textSize">16sp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:minHeight">@dimen/normalButtonHeight</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/border_color</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <!--小按钮样式-->
+    <style name="smallButton">
+        <item name="android:textSize">@dimen/smallButtonTextSize</item>
+        <item name="android:textColor">@color/white_color_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/smallPadding</item>
+        <item name="android:paddingRight">@dimen/smallPadding</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">@dimen/smallButtonWidth</item>
+        <item name="android:minHeight">@dimen/smallButtonHeight</item>
+    </style>
+
+    <!--小绿色按钮样式-->
+    <style name="smallGreenButton" parent="@style/smallButton">
+        <item name="android:background">@drawable/bg_btn_style_green</item>
+    </style>
+
+    <!--小灰色按钮样式-->
+    <style name="smallGreyButton" parent="@style/smallButton">
+        <item name="android:textColor">@color/grey_btn_text_color</item>
+        <item name="android:background">@drawable/bg_btn_style_grey</item>
+    </style>
+    <!--小红色按钮样式-->
+    <style name="smallRedButton" parent="@style/smallButton">
+        <item name="android:background">@drawable/bg_btn_style_red</item>
+    </style>
+
+    <style name="AnimationFade">
+        <item name="android:windowEnterAnimation">@anim/popup_show</item>
+        <item name="android:windowExitAnimation">@anim/popup_gone</item>
+    </style>
+
+    <style name="Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:background">#00000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
 
 </resources>

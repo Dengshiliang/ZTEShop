@@ -20,6 +20,20 @@ public class ServiceGenerator {
     private static API api;
     private static Activity mContext;
 
+    public static API getRetrofit() {
+        if (api == null) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(API.BASE_URL)
+                    .client(getOkHttpClient())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .build();
+
+            api = retrofit.create(API.class);
+        }
+        return api;
+    }
+
     public static API getRetrofit(Activity context) {
         mContext = context;
         if (api == null) {

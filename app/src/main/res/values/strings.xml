@@ -12,5 +12,42 @@
     <string name="total">总计</string>
     <string name="accounts">去结算</string>
     <string name="delete">删除</string>
+    <string name="edit">编辑</string>
 
+    <string name="wares_list">商品列表</string>
+    <string name="defaults">默认</string>
+    <string name="sales">销量</string>
+    <string name="price">价格</string>
+
+    <string name="wares_details">商品详情</string>
+    <string name="share">分享</string>
+    <string name="login">登录</string>
+
+    <string name="username_error">用户名错误</string>
+    <string name="password_error">密码错误</string>
+    <string name="token_error">校验失败，请重新登录</string>
+    <string name="my_address">我的地址</string>
+    <string name="my_favorite">我的收藏</string>
+    <string name="my_orders">我的订单</string>
+    <string name="to_login">点击登录</string>
+    <string name="about">关于</string>
+    <string name="setting">设置</string>
+    <string name="favorite">我的收藏</string>
+    <string name="smssdk_resend_identify_code">短信验证码</string>
+    <string name="photos">修改头像</string>
+    <string name="change_password">修改密码</string>
+    <string name="feedback">意见反馈</string>
+    <string name="tv_sex">性别</string>
+    <string name="tv_name">昵称</string>
+    <string name="tv_birthday">生日</string>
+    <string name="cancle">取消</string>
+    <string name="title">生日</string>
+    <string name="commit">完成</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="hour">时</string>
+    <string name="minute">分</string>
+    <string name="tv_loc">我的地址</string>
+    <string name="cancel">取消</string>
 </resources>

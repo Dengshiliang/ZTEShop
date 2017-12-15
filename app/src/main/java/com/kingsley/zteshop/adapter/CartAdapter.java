@@ -11,9 +11,10 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.kingsley.zteshop.R;
 import com.kingsley.zteshop.bean.ShoppingCart;
 import com.kingsley.zteshop.utils.CartProvider;
-import com.kingsley.zteshop.utils.ToastUtils;
 import com.kingsley.zteshop.widget.CircleAddAndSubView;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -22,7 +23,6 @@ import java.util.List;
 
 public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdapter.OnItemClickListenner {
 
-    private Context context;
     private CheckBox mCheckBox;
     private TextView mTextView;
 
@@ -38,6 +38,9 @@ public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdap
         setCheckBox(checkBox);
         setTextView(textView);
 
+        setOnItemClickListenner(this);
+        showTotalPrice();
+
     }
 
     public void setTextView(TextView textView) {
@@ -46,6 +49,16 @@ public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdap
 
     public void setCheckBox(CheckBox checkBox) {
         this.mCheckBox = checkBox;
+
+        mCheckBox.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                checkAll_None(mCheckBox.isChecked());
+                showTotalPrice();
+            }
+        });
+
     }
 
     @Override
@@ -57,7 +70,7 @@ public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdap
         SimpleDraweeView draweeView = (SimpleDraweeView) holder.getView(R.id.drawee_view_cart);
         draweeView.setImageURI(Uri.parse(item.getImgUrl()));
 
-        final CheckBox checkBox = (CheckBox) holder.getView(R.id.checkbox);
+        CheckBox checkBox = (CheckBox) holder.getView(R.id.checkbox);
         checkBox.setChecked(item.isChecked());
 
         CircleAddAndSubView numberAddSubView = (CircleAddAndSubView) holder.getView(R.id.add_sub_view);
@@ -110,5 +123,81 @@ public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdap
         cart.setIsChecked(!cart.isChecked());
         notifyItemChanged(position);
 
+        //不是全选要改变checkbox的状态
+        checkListen();
+        showTotalPrice();
+
     }
+
+    //获取已选中的数据
+    public List<ShoppingCart> getCheckData() {
+        List<ShoppingCart> temp = new ArrayList<>();
+        for (ShoppingCart cart : mDatas) {
+            System.out.println(cart.getName() + "**11**" + cart.isChecked());
+            if (cart.isChecked()) {
+                System.out.println(cart.getName() + "**22**" + cart.isChecked());
+                temp.add(cart);
+            }
+        }
+
+        System.out.println("temp----" + temp.size());
+
+        return temp;
+    }
+
+    private void checkListen() {
+        int count = 0;
+
+        int checkNum = 0;
+        if (mDatas != null) {
+            count = mDatas.size();
+
+            for (ShoppingCart cart : mDatas) {
+                if (!cart.isChecked()) {
+                    mCheckBox.setChecked(false);
+                    break;
+                } else {
+                    checkNum = checkNum + 1;
+                }
+            }
+
+            if (count == checkNum) {
+                mCheckBox.setChecked(true);
+            }
+        }
+    }
+
+    //全选或者全不选
+    public void checkAll_None(boolean isChecked) {
+        if (!isNull()) {
+            return;
+        }
+
+        int i = 0;
+        for (ShoppingCart cart : mDatas) {
+            cart.setIsChecked(isChecked);
+            notifyItemChanged(i);
+            i++;
+        }
+    }
+
+
+    public void delCart() {
+        if (!isNull())
+            return;
+
+        //list长度会改变，不能使用foreach循环，使用迭代器实现遍历
+        for (Iterator iterator = mDatas.iterator(); iterator.hasNext(); ) {
+            ShoppingCart cart = (ShoppingCart) iterator.next();
+
+            if (cart.isChecked()) {
+                int position = mDatas.indexOf(cart);
+                cartProvider.delete(cart);
+                iterator.remove();
+                notifyItemRemoved(position);
+
+            }
+        }
+    }
+
 }

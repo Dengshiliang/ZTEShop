@@ -1,4 +1,4 @@
-package com.kingsley.zteshop;
+package com.kingsley.zteshop.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.kingsley.zteshop.R;
 import com.kingsley.zteshop.bean.Tab;
 import com.kingsley.zteshop.fragment.CartFragment;
 import com.kingsley.zteshop.fragment.CategoryFragment;

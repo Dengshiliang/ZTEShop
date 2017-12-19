@@ -1,6 +1,8 @@
 package com.kingsley.zteshop.activity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.SystemClock;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
@@ -8,14 +10,22 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.kingsley.zteshop.R;
-import com.kingsley.zteshop.activity.BasicActivity;
+import com.kingsley.zteshop.bean.Favorite;
+import com.kingsley.zteshop.bean.User;
 import com.kingsley.zteshop.bean.Ware;
 import com.kingsley.zteshop.utils.CartProvider;
+import com.kingsley.zteshop.utils.ToastUtils;
 import com.kingsley.zteshop.widget.Constants;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.io.Serializable;
+import java.util.List;
 
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
 import dmax.dialog.SpotsDialog;
 
 /**
@@ -99,7 +109,7 @@ public class WareDetailActivity extends BasicActivity {
         getToolbar().setRightButtonOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showShare();
             }
         });
     }
@@ -107,10 +117,12 @@ public class WareDetailActivity extends BasicActivity {
 
     /**
      * 显示分享界面
+     * TODO
      */
     private void showShare() {
-
-
+        /*
+        TODO
+         */
     }
 
 
@@ -167,18 +179,18 @@ public class WareDetailActivity extends BasicActivity {
          */
         @JavascriptInterface
         public void buy(long id) {
-
-
-
+            mCartProvider.put(mWares);
+            ToastUtils.show(context, R.string.has_add_cart);
         }
 
         /**
          * 添加到收藏夹
+         *
          * @param id 商品id
          */
         @JavascriptInterface
         public void addToCart(long id) {
-
+            addToFavorite();
         }
 
     }
@@ -188,5 +200,39 @@ public class WareDetailActivity extends BasicActivity {
      */
     private void addToFavorite() {
 
+        final User user = BmobUser.getCurrentUser(User.class);
+        if (user == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+        } else {
+
+            BmobQuery<Favorite> query = new BmobQuery<Favorite>();
+            query.addWhereEqualTo("userId", user);
+            query.addWhereEqualTo("id", mWares.getId());
+            query.findObjects(new FindListener<Favorite>() {
+                @Override
+                public void done(List<Favorite> list, BmobException e) {
+                    if (e == null) {
+                        ToastUtils.show(WareDetailActivity.this, "已经收藏过了");
+                    } else {
+                        // 插入数据
+                        Favorite favorite = new Favorite();
+                        favorite.setUserId(user);
+                        favorite.setId(mWares.getId());
+                        favorite.setName(mWares.getName());
+                        favorite.setPrice(mWares.getPrice());
+                        favorite.setImgUrl(mWares.getImgUrl());
+                        favorite.save(new SaveListener<String>() {
+                            @Override
+                            public void done(String s, BmobException e) {
+                                if (e == null) {
+                                    ToastUtils.show(WareDetailActivity.this, "已经加入收藏");
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
+        }
     }
 }

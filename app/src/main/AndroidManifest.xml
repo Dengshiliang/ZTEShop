@@ -51,7 +51,8 @@
         <activity android:name=".activity.SettingNameActivity" />
         <activity android:name=".activity.FeedbackActivity" />
         <activity android:name=".activity.LocationActivity" />
-        <activity android:name=".activity.LocationAddActivity"></activity>
+        <activity android:name=".activity.LocationAddActivity" />
+        <activity android:name=".activity.MyFarvoriteActivity"></activity>
     </application>
 
 </manifest>

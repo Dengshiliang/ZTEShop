@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.kingsley.zteshop.MyApplication;
 import com.kingsley.zteshop.R;
 import com.kingsley.zteshop.activity.LoginActivity;
+import com.kingsley.zteshop.activity.MyFarvoriteActivity;
 import com.kingsley.zteshop.activity.SettingActivity;
 import com.kingsley.zteshop.bean.User;
 import com.kingsley.zteshop.utils.ImageLoaderUtils;
@@ -135,6 +136,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
             case R.id.favorite:
                 ToastUtils.show(getContext(), "我收藏的商品");
+                /**
+                 * TODO
+                 * 收藏商品
+                 */
+                intent = new Intent(getActivity(), MyFarvoriteActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.setting:
@@ -146,7 +153,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.about:
-                ToastUtils.show(getContext(), "关于主页");
+                ToastUtils.show(getContext(), "个人设置");
                 break;
 
             case R.id.fab:

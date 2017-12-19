@@ -2,17 +2,27 @@ package com.kingsley.zteshop.bean;
 
 import java.io.Serializable;
 
+import cn.bmob.v3.BmobObject;
 
 /**
- * Created by Kingsley on 2017/9/6.
+ * 收藏
  */
+public class Favorite extends BmobObject implements Serializable {
 
-public class Ware implements Serializable {
     private Long id;
+    private User userId;
+    private Long createTime;
     private String name;
     private String imgUrl;
-    private String description;
     private String price;
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
+    }
 
     public Long getId() {
         return id;
@@ -20,6 +30,14 @@ public class Ware implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Long createTime) {
+        this.createTime = createTime;
     }
 
     public String getName() {
@@ -38,14 +56,6 @@ public class Ware implements Serializable {
         this.imgUrl = imgUrl;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getPrice() {
         return price;
     }
@@ -53,5 +63,4 @@ public class Ware implements Serializable {
     public void setPrice(String price) {
         this.price = price;
     }
-
 }

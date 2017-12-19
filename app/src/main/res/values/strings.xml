@@ -31,7 +31,8 @@
     <string name="my_orders">我的订单</string>
     <string name="to_login">点击登录</string>
     <string name="about">关于</string>
-    <string name="setting">设置</string>
+    <string name="person_info">个人信息</string>
+    <string name="setting">个人设置</string>
     <string name="favorite">我的收藏</string>
     <string name="smssdk_resend_identify_code">短信验证码</string>
     <string name="photos">修改头像</string>

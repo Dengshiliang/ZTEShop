@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:paddingLeft="15dp"
+            android:paddingLeft="8dp"
             android:text="@string/favorite"
              />
     </LinearLayout>
@@ -72,14 +72,14 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"
-            android:src="@drawable/location" />
+            android:src="@drawable/person_info" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:paddingLeft="8dp"
-            android:text="@string/setting"
+            android:text="@string/person_info"
              />
     </LinearLayout>
 
@@ -95,14 +95,14 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"
-            android:src="@drawable/about" />
+            android:src="@drawable/setting" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:paddingLeft="8dp"
-            android:text="@string/about"
+            android:text="@string/setting"
              />
     </LinearLayout>
 

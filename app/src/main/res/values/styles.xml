@@ -169,4 +169,9 @@
         <item name="android:windowIsFloating">true</item>
     </style>
 
+    <style name="radioButton">
+        <item name="android:background">@drawable/selector_checkbox_green</item>
+        <item name="android:button">@null</item>
+    </style>
+
 </resources>

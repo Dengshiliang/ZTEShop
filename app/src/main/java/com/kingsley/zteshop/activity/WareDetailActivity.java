@@ -26,6 +26,7 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 import dmax.dialog.SpotsDialog;
 
 /**
@@ -117,12 +118,29 @@ public class WareDetailActivity extends BasicActivity {
 
     /**
      * 显示分享界面
-     * TODO
+     * 设置参数
      */
     private void showShare() {
-        /*
-        TODO
-         */
+
+        OnekeyShare oks = new OnekeyShare();
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+        // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
+        oks.setTitle("中兴商城");
+        // titleUrl是标题的网络链接，QQ和QQ空间等使用
+        oks.setTitleUrl("www.zte.com.cn");
+        // text是分享文本，所有平台都需要这个字段
+        oks.setText(mWares.getName().toString());
+        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+        oks.setImageUrl(mWares.getImgUrl());//确保SDcard下面存在此张图片
+        // url仅在微信（包括好友和朋友圈）中使用
+        oks.setUrl("www.zte.com.cn");
+        oks.setComment(mWares.getName());
+        oks.setSite(getString(R.string.app_name));
+        oks.setSiteUrl("www.zte.com.cn");
+        // 启动分享GUI
+        oks.show(this);
+
     }
 
 

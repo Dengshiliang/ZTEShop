@@ -8,16 +8,18 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.kingsley.zteshop.activity.NewOrderActivity;
 import com.kingsley.zteshop.R;
+import com.kingsley.zteshop.activity.OrderActivity;
 import com.kingsley.zteshop.adapter.CartAdapter;
 import com.kingsley.zteshop.adapter.decoration.DividerItemDecortion;
 import com.kingsley.zteshop.bean.ShoppingCart;
 import com.kingsley.zteshop.utils.CartProvider;
 import com.kingsley.zteshop.utils.ToastUtils;
+import com.kingsley.zteshop.widget.Constants;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -113,7 +115,7 @@ public class CartFragment extends BaseFragment implements View.OnClickListener {
         if (view.getId() == R.id.btn_order) {
             List<ShoppingCart> carts = mAdapter.getCheckData();
             if (carts.size() != 0 && carts != null) {
-                startActivity(new Intent(getActivity(), NewOrderActivity.class));
+                startActivity(new Intent(getActivity(), OrderActivity.class));
             } else {
                 ToastUtils.show(getContext(), "请选择要购买的商品");
             }
@@ -170,6 +172,12 @@ public class CartFragment extends BaseFragment implements View.OnClickListener {
              *  跳转到订单页面
              *  TODO
              */
+            Intent intent = new Intent(getActivity(), OrderActivity.class);
+            // 传值
+            intent.putExtra("carts", (Serializable) mAdapter.getCheckData());
+            intent.putExtra("sign", Constants.CART);
+            startActivity(intent);
+
 
         } else {
             ToastUtils.show(getContext(), "请选择要购买的商品");

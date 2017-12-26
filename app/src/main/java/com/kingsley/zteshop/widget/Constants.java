@@ -6,6 +6,7 @@ package com.kingsley.zteshop.widget;
 
 public class Constants {
     public static final int CART = 1;
+    public static final int ORDER = 2;
 
     public static final String CAMPAIGN_ID = "campaign_id";
 

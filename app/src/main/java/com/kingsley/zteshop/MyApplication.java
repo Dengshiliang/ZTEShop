@@ -2,11 +2,14 @@ package com.kingsley.zteshop;
 
 import android.app.Application;
 import android.content.Intent;
+import android.support.multidex.MultiDex;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.kingsley.zteshop.bean.User;
 import com.kingsley.zteshop.utils.UserLocalData;
+import com.mob.MobSDK;
 
+import c.b.BP;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 
@@ -36,6 +39,10 @@ public class MyApplication extends Application {
         Fresco.initialize(this);
         //初始化BmobSDK
         Bmob.initialize(this, "0dd68acabbc63f4e71644df10a75cf3a");
+        BP.init("16bde8a1659356f69c8b92ef0f3e539d");
+        //BP.init("0dd68acabbc63f4e71644df10a75cf3a");
+        MobSDK.init(this,"2347d1f390830","75c77847e06d648b0f4a5ffbd93010b2");
+        MultiDex.install(this);
     }
 
     /**
@@ -68,6 +75,7 @@ public class MyApplication extends Application {
 
     /**
      * 保存用户信息和token信息到本地
+     *
      * @param user
      * @param token
      */
@@ -86,6 +94,7 @@ public class MyApplication extends Application {
 
     /**
      * 获取登录意图
+     *
      * @return
      */
     public Intent getIntent() {

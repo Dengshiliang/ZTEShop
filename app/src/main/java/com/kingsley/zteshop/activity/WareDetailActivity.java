@@ -222,35 +222,21 @@ public class WareDetailActivity extends BasicActivity {
         if (user == null) {
             startActivity(new Intent(this, LoginActivity.class));
         } else {
-
-            BmobQuery<Favorite> query = new BmobQuery<Favorite>();
-            query.addWhereEqualTo("userId", user);
-            query.addWhereEqualTo("id", mWares.getId());
-            query.findObjects(new FindListener<Favorite>() {
+            // 插入数据
+            Favorite favorite = new Favorite();
+            favorite.setUserId(user);
+            favorite.setId(mWares.getId());
+            favorite.setName(mWares.getName());
+            favorite.setPrice(mWares.getPrice());
+            favorite.setImgUrl(mWares.getImgUrl());
+            favorite.save(new SaveListener<String>() {
                 @Override
-                public void done(List<Favorite> list, BmobException e) {
+                public void done(String s, BmobException e) {
                     if (e == null) {
-                        ToastUtils.show(WareDetailActivity.this, "已经收藏过了");
-                    } else {
-                        // 插入数据
-                        Favorite favorite = new Favorite();
-                        favorite.setUserId(user);
-                        favorite.setId(mWares.getId());
-                        favorite.setName(mWares.getName());
-                        favorite.setPrice(mWares.getPrice());
-                        favorite.setImgUrl(mWares.getImgUrl());
-                        favorite.save(new SaveListener<String>() {
-                            @Override
-                            public void done(String s, BmobException e) {
-                                if (e == null) {
-                                    ToastUtils.show(WareDetailActivity.this, "已经加入收藏");
-                                }
-                            }
-                        });
+                        ToastUtils.show(WareDetailActivity.this, "已经加入收藏");
                     }
                 }
             });
-
         }
     }
 }

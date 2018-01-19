@@ -4,9 +4,7 @@ import com.kingsley.zteshop.bean.Banner;
 import com.kingsley.zteshop.bean.Category;
 import com.kingsley.zteshop.bean.HomeCampaign;
 import com.kingsley.zteshop.bean.Page;
-import com.kingsley.zteshop.bean.User;
 import com.kingsley.zteshop.bean.Ware;
-import com.kingsley.zteshop.msg.LoginRespMsg;
 
 import java.util.List;
 
@@ -51,7 +49,4 @@ public interface API {
     Observable<Page<Ware>> campaignList(@Field("campaignId") long campaignId, @Field("orderBy") int orderBy,
                                          @Field("curPage") int curPage, @Field("pageSize") int pageSize);
 
-    @FormUrlEncoded //用户登录
-    @POST(path + "auth/login")
-    Observable<LoginRespMsg<User>> login(@Field("phone") String phone, @Field("password") String password);
 }
